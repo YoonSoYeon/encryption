@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ps.mapper.BoardMapper">
+
+<!-- myBatis가 이용하는 query문장이 들어 있는 파일
+java Mapper에 의해 이용됨.
+java Mapper - xml Mapper - myBatis   
+java Mapper안에 있는 메소드 이름과 xml Mapper 안의 query id가 일치해야 함.
+-->
+<!-- select 한 후의 결과 처리를 위한 부분 -->
+
+<resultMap type="Board" id="BoardResult">
+	<id property="rnum" column="rnum"/>
+	<result property="title" column="title"/>
+	<result property="content" column="content"/>
+	<result property="sdate" column="sdate"/>
+	<result property="edate" column="edate"/>
+	<result property="gnum" column="gnum"/>
+</resultMap>
+
+
+
+<select id="all" resultMap="BoardResult">
+	select * from Board
+</select>
+<insert id="insert" parameterType="Board">
+	insert into board values(rnum_seq.nextval, #{title }, #{content }, #{sdate },
+	 #{edate }, #{gnum})
+</insert>
+</mapper>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ps.mapper.GIPSMapper">
+
+<!-- myBatis가 이용하는 query문장이 들어 있는 파일
+java Mapper에 의해 이용됨.
+java Mapper - xml Mapper - myBatis   
+java Mapper안에 있는 메소드 이름과 xml Mapper 안의 query id가 일치해야 함.
+-->
+
+<!-- select 한 후의 결과 처리를 위한 부분 -->
+<resultMap type="GIPS" id="GIPSResult">
+	<id property="ginum" column="ginum"/>
+	<result property="giname" column="giname"/>
+	<result property="gidnum" column="gidnum"/>
+	<result property="gmid" column="gidnum"/>
+</resultMap>
+<select id="all" resultMap="GIPSResult">
+	select * from GINFO
+</select>
+
+
+
+<insert id="ginfoinsert" parameterType="GIPS">
+insert into GINFO values(#{ginum }, #{giname }, GMNUM_SEQ.nextval)
+</insert>
+<!-- 
+<select id="findBySearch" parameterType="String" resultMap="GPSResult">
+	select * from MAKEGROUP where gname like #{gname }
+</select>
+<select id="findByNum" parameterType="String" resultMap="GPSResult">
+	select gname,substr(spdate,0,10) spdate,substr(epdate,0,10) epdate from MAKEGROUP where gnum = #{gnum}
+</select>
+
+<select id="findByName" parameterType="String" resultMap="PSResult">
+	select * from groupinfo where name = #{name}
+</select>
+<select id="findBySpdate" parameterType="String" resultMap="PSResult">
+	select * from groupinfo where spdate like #{spdate}
+</select>
+
+<select id="findByEpdate" parameterType="String" resultMap="PSResult">
+	select * from groupinfo where epdate like #{epdate}
+</select>
+
+<select id="findByGid" parameterType="String" resultMap="PSResult">
+	select * from groupinfo where gid like #{gid}
+</select>
+
+<update id="update" parameterType="PS">
+	update board set title = #{title}, content = #{content}
+	where num = #{num}
+</update> -->
+
+<!-- 
+<select id="all" resultMap="CustomerResult">
+	select * from customer order by num
+</select>
+
+<select id="findByNum" parameterType="String" resultMap="CustomerResult">
+	select * from customer where num = #{num}
+</select>  
+
+<select id="findByAddress" parameterType="String" resultMap="CustomerResult">
+	select * from customer where address = #{address}
+</select>
+
+<select id="findByName" parameterType="String" resultMap="CustomerResult">
+	select * from customer where name = #{name}
+</select>
+
+<insert id="insert" parameterType="Customer">
+	insert into customer values(#{num}, #{name}, #{address})
+</insert>
+ -->
+</mapper>
